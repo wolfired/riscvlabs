@@ -19,7 +19,14 @@ function tmux_inner() {
     local tty0=`tmux display -t0 -p '#{pane_tty}'`
     local tty1=`tmux display -t1 -p '#{pane_tty}'`
     local tty3=`tmux display -t3 -p '#{pane_tty}'`
-    $GDB -ex "dashboard -output $tty3" -ex "dashboard source -output $tty0" -ex "dashboard assembly -output $tty1" "$@"
+    $GDB \
+    -ex "dashboard -output $tty3" \
+    -ex 'dashboard source -style height 0' \
+    -ex "dashboard source -output $tty0" \
+    -ex 'dashboard source scroll' \
+    -ex 'dashboard assembly -style height 0' \
+    -ex "dashboard assembly -output $tty1" "$@" \
+    -ex 'dashboard assembly scroll'
     tmux killp -a
 }
 
