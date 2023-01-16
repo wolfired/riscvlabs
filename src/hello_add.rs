@@ -1,4 +1,4 @@
-fn add(x:i8, y:i8) -> i8 {
+fn add(x: i8, y: i8) -> i8 {
     let a = x + y;
     a + a
 }

@@ -6,8 +6,8 @@ typedef struct Sun_ {
     int count;
 } Sun;
 
-Sun pass(int age, int count) {
-    return (Sun){age, count};
+Sun pass(Sun sun) {
+    return (Sun){sun.age + 2, sun.count + 2};
 }
 
 int add(int x, int y) {
@@ -20,7 +20,8 @@ int main(int argc, char** argv) {
     int y = 2;
     int z = add(x, y);
     printf("%d + %d = %d\n", x, y, z);
-    Sun s = pass(9, 8);
-    printf("%s %d\n", "hello world", s.age);
+    Sun s0 = (Sun){8, 9};
+    Sun s1 = pass(s0);
+    printf("%s %d\n", "hello world", s1.age);
     return EXIT_SUCCESS;
 }
